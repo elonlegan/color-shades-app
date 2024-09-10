@@ -1,5 +1,8 @@
 .container {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
 }
 
 .shades-container {

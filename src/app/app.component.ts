@@ -11,21 +11,31 @@ import chroma from 'chroma-js';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  baseColor: string = '#C7A873'; // Color inicial por defecto (900)
-  shades: string[] = [];
+  primaryColor: string = '#C7A873'; // Color inicial por defecto (900)
+  secondaryColor: string = '#054956'; // Color inicial por defecto (900)
+  accentColor: string = '#A95C7C'; // Color inicial por defecto (900)
+  primaryShades: string[] = [];
+  secondaryShades: string[] = [];
+  accentShades: string[] = [];
 
   constructor() {
-    this.generateShades(this.baseColor);
+    this.generatePalete();
   }
 
   // Función para generar tonos más claros de un color
-  generateShades(baseColor: string) {
+  generatePalete() {
+    this.primaryShades = this.generateShades(this.primaryColor);
+    this.secondaryShades = this.generateShades(this.secondaryColor);
+    this.accentShades = this.generateShades(this.accentColor);
+  }
+  // Función para generar tonos más claros de un color
+  generateShades(color: string) {
     const scale = chroma
-      .scale([baseColor, 'white']) // Genera una escala entre el color 900 y blanco
+      .scale([color, 'white']) // Genera una escala entre el color 900 y blanco
       .domain([0, 1]) // Definir el dominio de la escala (0 a 1)
       .mode('lab');
-    this.shades = [
-      chroma(baseColor).hex(), // Shade 900 (color elegido)
+    return [
+      chroma(color).hex(), // Shade 900 (color elegido)
       scale(0.2).hex(), // Shade 800
       scale(0.3).hex(), // Shade 700
       scale(0.4).hex(), // Shade 600
@@ -39,6 +49,6 @@ export class AppComponent {
 
   // Método que se ejecuta cuando el usuario cambia el color
   onColorChange() {
-    this.generateShades(this.baseColor);
+    this.generatePalete();
   }
 }

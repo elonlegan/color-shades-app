@@ -1,13 +1,45 @@
 <div class="container">
-  <h2>Select a Base Color</h2>
-  <input type="color" [(ngModel)]="baseColor" (input)="onColorChange()" />
+  <div class="color-selector">
+    <h2>Select a Primary Color</h2>
+    <input type="color" [(ngModel)]="primaryColor" (input)="onColorChange()" />
 
-  <div class="shades-container">
-    @for(shade of shades;track shade; let i = $index){
-    <div class="shade-box">
-      <div class="color-box" [style.background]="shade"></div>
-      <p>Shade {{ 900 - i * 100 }} - {{ shade }}</p>
+    <div class="shades-container">
+      @for(shade of primaryShades;track shade; let i = $index){
+      <div class="shade-box">
+        <div class="color-box" [style.background]="shade"></div>
+        <p>Shade {{ 900 - i * 100 }} - {{ shade }}</p>
+      </div>
+      }
     </div>
-    }
+  </div>
+  <div class="color-selector">
+    <h2>Select a Secondary Color</h2>
+    <input
+      type="color"
+      [(ngModel)]="secondaryColor"
+      (input)="onColorChange()"
+    />
+
+    <div class="shades-container">
+      @for(shade of secondaryShades;track shade; let i = $index){
+      <div class="shade-box">
+        <div class="color-box" [style.background]="shade"></div>
+        <p>Shade {{ 900 - i * 100 }} - {{ shade }}</p>
+      </div>
+      }
+    </div>
+  </div>
+  <div class="color-selector">
+    <h2>Select a Accent Color</h2>
+    <input type="color" [(ngModel)]="accentColor" (input)="onColorChange()" />
+
+    <div class="shades-container">
+      @for(shade of accentShades;track shade; let i = $index){
+      <div class="shade-box">
+        <div class="color-box" [style.background]="shade"></div>
+        <p>Shade {{ 900 - i * 100 }} - {{ shade }}</p>
+      </div>
+      }
+    </div>
   </div>
 </div>
